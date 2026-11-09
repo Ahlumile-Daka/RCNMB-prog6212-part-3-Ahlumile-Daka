@@ -21,3 +21,22 @@ RaceDay/
 - SQL Server / LocalDB (or adjust connection string)
 - Docker Desktop (WSL 2 backend recommended on Windows)
 - Azure Storage account **or** Azurite for local Blob testing
+## 1. Configure & run locally
+
+### API
+
+1. Open RaceDay.Api/appsettings.json
+2. Set your SQL connection string under ConnectionStrings:DefaultConnection
+3. Set Azure Storage connection string under AzureStorage:ConnectionString
+   - Local Azurite: "UseDevelopmentStorage=true"
+   - Real account: "DefaultEndpointsProtocol=https;AccountName=...;AccountKey=...;EndpointSuffix=core.windows.net"
+4. Run the API (note the HTTPS port from `launchSettings.json`, commonly `https://localhost:7xxx`)
+
+MVC
+1. Open RaceDay.Mvc/appsettings.json (or Development)
+2. Set ApiSettings:BaseUrl to the exact API base URL including trailing slash, e.g. "https://localhost:7123/"
+3. Run RaceDay.Mvc
+4. Browse to the MVC URL, register an Organiser and a Participant, and test the full flow
+Important architecture rule:** The MVC project never talks to the database. All data operations go through the Part 2 API. File uploads also go through the API (/api/events/{id}/banner and /api/users/me/profile-image).
+1b. How the API and MVC connect
+
