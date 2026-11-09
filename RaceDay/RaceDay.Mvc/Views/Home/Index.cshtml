@@ -1,0 +1,74 @@
+@model List<EventDto>
+@{
+    ViewData["Title"] = "Home";
+}
+<div class="hero text-center">
+    <div class="container">
+        <h1><i class="bi bi-trophy"></i> RaceDay</h1>
+        <p class="lead mb-4">Find races. Enrol. Compete. Celebrate.</p>
+        @if (!SessionHelper.IsAuthenticated(Context))
+        {
+            <a asp-controller="Auth" asp-action="Register" class="btn btn-light btn-lg me-2">Get Started</a>
+            <a asp-controller="Auth" asp-action="Login" class="btn btn-outline-light btn-lg">Login</a>
+        }
+        else if (SessionHelper.IsParticipant(Context))
+        {
+            <a asp-controller="Participant" asp-action="Index" class="btn btn-light btn-lg">Browse Events</a>
+        }
+        else
+        {
+            <a asp-controller="Organiser" asp-action="Dashboard" class="btn btn-light btn-lg">Go to Dashboard</a>
+        }
+    </div>
+</div>
+
+<h3 class="mb-3" style="color:var(--rd-primary)">Upcoming Events</h3>
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No upcoming events right now. Check back soon!</div>
+}
+else
+{
+    <div class="row g-4">
+        @foreach (var e in Model)
+        {
+            <div class="col-md-4">
+                <div class="card card-raceday h-100">
+                    @if (!string.IsNullOrEmpty(e.BannerImageUrl))
+                    {
+                        <img src="@e.BannerImageUrl" class="card-img-top" alt="@e.EventName" />
+                    }
+                    else
+                    {
+                        <div class="card-img-top d-flex align-items-center justify-content-center text-white">
+                            <i class="bi bi-flag-fill" style="font-size:3rem"></i>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <span class="badge badge-status badge-@e.Status.ToLower()">@e.Status</span>
+                        <h5 class="card-title mt-2">@e.EventName</h5>
+                        <p class="card-text text-muted small mb-1">
+                            <i class="bi bi-calendar-event"></i> @e.EventDate.ToString("ddd, dd MMM yyyy")
+                        </p>
+                        <p class="card-text text-muted small mb-1">
+                            <i class="bi bi-geo-alt"></i> @e.Location
+                        </p>
+                        <p class="card-text text-muted small">
+                            <i class="bi bi-speedometer2"></i> @e.DistanceKm km · @e.EventTypeName
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pb-3">
+                        @if (SessionHelper.IsParticipant(Context))
+                        {
+                            <a asp-controller="Participant" asp-action="EventDetails" asp-route-id="@e.EventID" class="btn btn-outline-raceday btn-sm">View & Enrol</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Auth" asp-action="Login" class="btn btn-outline-raceday btn-sm">Login to enrol</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

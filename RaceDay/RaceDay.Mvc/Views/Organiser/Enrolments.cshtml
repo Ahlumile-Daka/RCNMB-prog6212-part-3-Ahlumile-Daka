@@ -1,0 +1,40 @@
+@model List<EnrolmentDto>
+@{
+    ViewData["Title"] = "Enrolments";
+    var evt = ViewBag.Event as EventDto;
+}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 style="color:var(--rd-primary)">Enrolments</h2>
+        <p class="text-muted mb-0">@evt?.EventName</p>
+    </div>
+    <a asp-action="Dashboard" class="btn btn-outline-secondary">Back</a>
+</div>
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No enrolments yet.</div>
+}
+else
+{
+    <table class="table table-raceday table-hover">
+        <thead>
+            <tr>
+                <th>Participant</th>
+                <th>Category</th>
+                <th>Enrolment Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var en in Model)
+        {
+            <tr>
+                <td>@en.ParticipantName</td>
+                <td>@en.CategoryName</td>
+                <td>@en.EnrolmentDate.ToString("dd MMM yyyy")</td>
+                <td><span class="badge badge-status badge-@en.Status.ToLower()">@en.Status</span></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

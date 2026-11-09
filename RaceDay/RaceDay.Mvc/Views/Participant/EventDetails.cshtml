@@ -1,0 +1,68 @@
+@model EventDto
+@{
+    ViewData["Title"] = Model.EventName;
+}
+@if (!string.IsNullOrEmpty(Model.BannerImageUrl))
+{
+    <img src="@Model.BannerImageUrl" class="event-banner mb-4" alt="Banner" />
+}
+<div class="d-flex justify-content-between align-items-start mb-3">
+    <div>
+        <h2 style="color:var(--rd-primary)">@Model.EventName</h2>
+        <span class="badge badge-status badge-@Model.Status.ToLower()">@Model.Status</span>
+    </div>
+    @if (Model.Status == "Open")
+    {
+        <a asp-action="Enrol" asp-route-id="@Model.EventID" class="btn btn-raceday">Enrol Now</a>
+    }
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card card-raceday mb-3">
+            <div class="card-body">
+                <p>@Model.Description</p>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-calendar-event me-2"></i> <strong>Date:</strong> @Model.EventDate.ToString("dddd, dd MMMM yyyy HH:mm")</li>
+                    <li><i class="bi bi-geo-alt me-2"></i> <strong>Location:</strong> @Model.Location</li>
+                    <li><i class="bi bi-speedometer2 me-2"></i> <strong>Distance:</strong> @Model.DistanceKm km</li>
+                    <li><i class="bi bi-tag me-2"></i> <strong>Type:</strong> @Model.EventTypeName</li>
+                    <li><i class="bi bi-person me-2"></i> <strong>Organiser:</strong> @Model.OrganiserName</li>
+                    @if (Model.MaxParticipants.HasValue)
+                    {
+                        <li><i class="bi bi-people me-2"></i> <strong>Max Participants:</strong> @Model.MaxParticipants</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <h5>Available Categories</h5>
+        @if (Model.Categories == null || !Model.Categories.Any())
+        {
+            <p class="text-muted">No categories published yet.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-sm table-raceday">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Age</th>
+                            <th>Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var c in Model.Categories)
+                    {
+                        <tr>
+                            <td>@c.CategoryName</td>
+                            <td>@(c.MinAge?.ToString() ?? "–") – @(c.MaxAge?.ToString() ?? "–")</td>
+                            <td>R @c.EntryFee.ToString("0.00")</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+<a asp-action="Index" class="btn btn-outline-secondary mt-3">Back to Events</a>

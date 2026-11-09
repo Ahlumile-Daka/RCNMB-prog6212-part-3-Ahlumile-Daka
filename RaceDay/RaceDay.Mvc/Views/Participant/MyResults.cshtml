@@ -1,0 +1,41 @@
+@model List<ResultDto>
+@{
+    ViewData["Title"] = "My Results";
+}
+<h2 class="mb-4" style="color:var(--rd-primary)">My Race Results</h2>
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No results recorded yet. Results appear after the organiser captures them.</div>
+}
+else
+{
+    <table class="table table-raceday table-hover">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Finish Time</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.EventName</td>
+                <td>–</td>
+                <td>@r.CategoryName</td>
+                <td>@(r.FinishTime?.ToString(@"hh\:mm\:ss") ?? "–")</td>
+                <td>
+                    @if (r.Position.HasValue)
+                    {
+                        <strong>@r.Position</strong>
+                    }
+                    else { <span>–</span> }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

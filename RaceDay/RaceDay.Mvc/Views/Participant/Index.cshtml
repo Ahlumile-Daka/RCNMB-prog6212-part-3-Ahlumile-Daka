@@ -1,0 +1,41 @@
+@model List<EventDto>
+@{
+    ViewData["Title"] = "Upcoming Events";
+}
+<h2 class="mb-4" style="color:var(--rd-primary)">Upcoming Events</h2>
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No open upcoming events at the moment.</div>
+}
+else
+{
+    <div class="row g-4">
+        @foreach (var e in Model)
+        {
+            <div class="col-md-4">
+                <div class="card card-raceday h-100">
+                    @if (!string.IsNullOrEmpty(e.BannerImageUrl))
+                    {
+                        <img src="@e.BannerImageUrl" class="card-img-top" alt="@e.EventName" />
+                    }
+                    else
+                    {
+                        <div class="card-img-top d-flex align-items-center justify-content-center text-white">
+                            <i class="bi bi-flag-fill" style="font-size:3rem"></i>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <span class="badge badge-status badge-@e.Status.ToLower()">@e.Status</span>
+                        <h5 class="mt-2">@e.EventName</h5>
+                        <p class="small text-muted mb-1"><i class="bi bi-calendar"></i> @e.EventDate.ToString("ddd, dd MMM yyyy")</p>
+                        <p class="small text-muted mb-1"><i class="bi bi-geo-alt"></i> @e.Location</p>
+                        <p class="small text-muted"><i class="bi bi-speedometer2"></i> @e.DistanceKm km · @e.EventTypeName</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <a asp-action="EventDetails" asp-route-id="@e.EventID" class="btn btn-raceday btn-sm">Details & Enrol</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

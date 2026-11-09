@@ -1,0 +1,68 @@
+@model OrganiserDashboardVm
+@{
+    ViewData["Title"] = "Organiser Dashboard";
+}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 style="color:var(--rd-primary)">Welcome, @Model.FullName</h2>
+    <a asp-action="CreateEvent" class="btn btn-raceday"><i class="bi bi-plus-lg"></i> New Event</a>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-value">@Model.TotalEvents</div>
+            <div class="stat-label">Events Created</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-value">@Model.TotalEnrolments</div>
+            <div class="stat-label">Total Enrolments</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-value">@Model.UpcomingEvents.Count</div>
+            <div class="stat-label">Upcoming</div>
+        </div>
+    </div>
+</div>
+
+<h4 class="mb-3">Your Events</h4>
+@if (!Model.Events.Any())
+{
+    <div class="alert alert-info">You haven't created any events yet. <a asp-action="CreateEvent">Create one now</a>.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-raceday table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var e in Model.Events.OrderByDescending(x => x.EventDate))
+                {
+                    <tr>
+                        <td><strong>@e.EventName</strong><br /><small class="text-muted">@e.DistanceKm km · @e.EventTypeName</small></td>
+                        <td>@e.EventDate.ToString("dd MMM yyyy")</td>
+                        <td>@e.Location</td>
+                        <td><span class="badge badge-status badge-@e.Status.ToLower()">@e.Status</span></td>
+                        <td>
+                            <a asp-action="EditEvent" asp-route-id="@e.EventID" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <a asp-action="Categories" asp-route-eventId="@e.EventID" class="btn btn-sm btn-outline-secondary">Categories</a>
+                            <a asp-action="Enrolments" asp-route-eventId="@e.EventID" class="btn btn-sm btn-outline-secondary">Enrolments</a>
+                            <a asp-action="Results" asp-route-eventId="@e.EventID" class="btn btn-sm btn-outline-success">Results</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,33 @@
+@model List<EnrolmentDto>
+@{
+    ViewData["Title"] = "My Events";
+}
+<h2 class="mb-4" style="color:var(--rd-primary)">My Events</h2>
+@if (!Model.Any())
+{
+    <div class="alert alert-info">You haven't enrolled in any events yet. <a asp-action="Index">Browse upcoming events</a>.</div>
+}
+else
+{
+    <table class="table table-raceday table-hover">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Category</th>
+                <th>Enrolment Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var en in Model.OrderByDescending(x => x.EnrolmentDate))
+        {
+            <tr>
+                <td>@en.EventName</td>
+                <td>@en.CategoryName</td>
+                <td>@en.EnrolmentDate.ToString("dd MMM yyyy")</td>
+                <td><span class="badge badge-status badge-@en.Status.ToLower()">@en.Status</span></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

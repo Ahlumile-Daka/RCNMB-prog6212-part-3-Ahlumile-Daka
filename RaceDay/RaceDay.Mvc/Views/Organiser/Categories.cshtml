@@ -1,0 +1,52 @@
+@model List<CategoryDto>
+@{
+    ViewData["Title"] = "Categories";
+    var evt = ViewBag.Event as EventDto;
+}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 style="color:var(--rd-primary)">Categories</h2>
+        <p class="text-muted mb-0">Event: <strong>@evt?.EventName</strong></p>
+    </div>
+    <div>
+        <a asp-action="CreateCategory" asp-route-eventId="@evt?.EventID" class="btn btn-raceday">Add Category</a>
+        <a asp-action="Dashboard" class="btn btn-outline-secondary">Back</a>
+    </div>
+</div>
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No categories yet. Add at least one so participants can enrol.</div>
+}
+else
+{
+    <table class="table table-raceday table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age Range</th>
+                <th>Entry Fee</th>
+                <th>Max Entries</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.CategoryName</td>
+                <td>@(c.MinAge?.ToString() ?? "–") – @(c.MaxAge?.ToString() ?? "–")</td>
+                <td>R @c.EntryFee.ToString("0.00")</td>
+                <td>@(c.MaxEntries?.ToString() ?? "Unlimited")</td>
+                <td>
+                    <form asp-action="DeleteCategory" method="post" class="d-inline" onsubmit="return confirm('Delete category?');">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@c.CategoryID" />
+                        <input type="hidden" name="eventId" value="@c.EventID" />
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

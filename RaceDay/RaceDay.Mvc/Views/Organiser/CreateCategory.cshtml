@@ -1,0 +1,40 @@
+@model CategoryFormVm
+@{
+    ViewData["Title"] = "Add Category";
+}
+<h2 class="mb-4" style="color:var(--rd-primary)">Add Category</h2>
+<form asp-action="CreateCategory" method="post">
+    <input type="hidden" asp-for="EventID" />
+    <div class="card card-raceday" style="max-width:500px">
+        <div class="card-body">
+            <div class="mb-3">
+                <label asp-for="CategoryName" class="form-label"></label>
+                <input asp-for="CategoryName" class="form-control" placeholder="e.g. 10km Open, Under 18" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label asp-for="MinAge" class="form-label"></label>
+                    <input asp-for="MinAge" class="form-control" />
+                </div>
+                <div class="col-6 mb-3">
+                    <label asp-for="MaxAge" class="form-label"></label>
+                    <input asp-for="MaxAge" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label asp-for="EntryFee" class="form-label"></label>
+                    <input asp-for="EntryFee" class="form-control" />
+                </div>
+                <div class="col-6 mb-3">
+                    <label asp-for="MaxEntries" class="form-label"></label>
+                    <input asp-for="MaxEntries" class="form-control" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-raceday">Save</button>
+            <a asp-action="Categories" asp-route-eventId="@Model.EventID" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </div>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

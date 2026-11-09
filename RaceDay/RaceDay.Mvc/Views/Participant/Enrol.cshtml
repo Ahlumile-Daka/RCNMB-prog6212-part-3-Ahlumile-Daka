@@ -1,0 +1,30 @@
+@model EnrolVm
+@{
+    ViewData["Title"] = "Enrol";
+}
+<h2 class="mb-4" style="color:var(--rd-primary)">Enrol in @Model.Event.EventName</h2>
+<div class="card card-raceday" style="max-width:480px">
+    <div class="card-body">
+        <p class="text-muted">@Model.Event.EventDate.ToString("dd MMM yyyy") · @Model.Event.Location</p>
+        <form asp-action="Enrol" method="post">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label asp-for="CategoryID" class="form-label"></label>
+                <select asp-for="CategoryID" class="form-select" required>
+                    <option value="">-- Select category --</option>
+                    @if (Model.Event.Categories != null)
+                    {
+                        foreach (var c in Model.Event.Categories)
+                        {
+                            <option value="@c.CategoryID">@c.CategoryName (R @c.EntryFee.ToString("0.00"))</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="CategoryID" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-raceday">Confirm Enrolment</button>
+            <a asp-action="EventDetails" asp-route-id="@Model.Event.EventID" class="btn btn-outline-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

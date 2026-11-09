@@ -1,0 +1,48 @@
+@model List<EventDto>
+@{
+    ViewData["Title"] = "My Events";
+}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 style="color:var(--rd-primary)">My Events</h2>
+    <a asp-action="CreateEvent" class="btn btn-raceday"><i class="bi bi-plus-lg"></i> Create Event</a>
+</div>
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No events yet.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-raceday table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Distance</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var e in Model)
+            {
+                <tr>
+                    <td>@e.EventName</td>
+                    <td>@e.EventDate.ToString("dd MMM yyyy HH:mm")</td>
+                    <td>@e.Location</td>
+                    <td>@e.DistanceKm km</td>
+                    <td><span class="badge badge-status badge-@e.Status.ToLower()">@e.Status</span></td>
+                    <td class="text-end">
+                        <a asp-action="EditEvent" asp-route-id="@e.EventID" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <form asp-action="DeleteEvent" asp-route-id="@e.EventID" method="post" class="d-inline" onsubmit="return confirm('Delete this event?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
