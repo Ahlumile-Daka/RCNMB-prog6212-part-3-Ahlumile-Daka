@@ -1,10 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Student\\OneDrive - ADvTECH Ltd\\Documents\\GitHub\\RCNMB-prog6212-part-3-Ahlumile-Daka\\RaceDay\\",
+  "WorkspaceRootPath": "C:\\Users\\Student\\Downloads\\files\\prog6212-part-3-Ahlumile-Daka-fixed\\prog6212-part-3-Ahlumile-Daka\\RaceDay\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-444444444444}|RaceDay.Mvc\\RaceDay.Mvc.csproj|c:\\users\\student\\onedrive - advtech ltd\\documents\\github\\rcnmb-prog6212-part-3-ahlumile-daka\\raceday\\raceday.mvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-444444444444}|RaceDay.Mvc\\RaceDay.Mvc.csproj|solutionrelative:raceday.mvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-111111111111}|RaceDay.Api\\RaceDay.Api.csproj|c:\\users\\student\\downloads\\files\\prog6212-part-3-ahlumile-daka-fixed\\prog6212-part-3-ahlumile-daka\\raceday\\raceday.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-111111111111}|RaceDay.Api\\RaceDay.Api.csproj|solutionrelative:raceday.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-444444444444}|RaceDay.Mvc\\RaceDay.Mvc.csproj|c:\\users\\student\\downloads\\files\\prog6212-part-3-ahlumile-daka-fixed\\prog6212-part-3-ahlumile-daka\\raceday\\raceday.mvc\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-444444444444}|RaceDay.Mvc\\RaceDay.Mvc.csproj|solutionrelative:raceday.mvc\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +18,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\Student\\Downloads\\files\\prog6212-part-3-Ahlumile-Daka-fixed\\prog6212-part-3-Ahlumile-Daka\\RaceDay\\RaceDay.Mvc\\Dockerfile",
+              "RelativeDocumentMoniker": "RaceDay.Mvc\\Dockerfile",
+              "ToolTip": "C:\\Users\\Student\\Downloads\\files\\prog6212-part-3-Ahlumile-Daka-fixed\\prog6212-part-3-Ahlumile-Daka\\RaceDay\\RaceDay.Mvc\\Dockerfile",
+              "RelativeToolTip": "RaceDay.Mvc\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-11-09T12:13:41.467Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Student\\OneDrive - ADvTECH Ltd\\Documents\\GitHub\\RCNMB-prog6212-part-3-Ahlumile-Daka\\RaceDay\\RaceDay.Mvc\\Program.cs",
-              "RelativeDocumentMoniker": "RaceDay.Mvc\\Program.cs",
-              "ToolTip": "C:\\Users\\Student\\OneDrive - ADvTECH Ltd\\Documents\\GitHub\\RCNMB-prog6212-part-3-Ahlumile-Daka\\RaceDay\\RaceDay.Mvc\\Program.cs",
-              "RelativeToolTip": "RaceDay.Mvc\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Student\\Downloads\\files\\prog6212-part-3-Ahlumile-Daka-fixed\\prog6212-part-3-Ahlumile-Daka\\RaceDay\\RaceDay.Api\\Program.cs",
+              "RelativeDocumentMoniker": "RaceDay.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\Student\\Downloads\\files\\prog6212-part-3-Ahlumile-Daka-fixed\\prog6212-part-3-Ahlumile-Daka\\RaceDay\\RaceDay.Api\\Program.cs",
+              "RelativeToolTip": "RaceDay.Api\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-09T08:11:34.212Z",
+              "WhenOpened": "2026-11-09T10:32:05.107Z",
               "EditorCaption": ""
             }
           ]

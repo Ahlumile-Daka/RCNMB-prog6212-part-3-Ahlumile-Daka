@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -37,7 +38,24 @@ public class RaceDayApiClient
         AttachToken(request);
         if (body != null)
             request.Content = JsonContent.Create(body);
-        return await client.SendAsync(request);
+        return await SafeSendAsync(client, request);
+    }
+
+    // If the API is not running / not reachable, return a friendly 503 instead of crashing the page.
+    private static async Task<HttpResponseMessage> SafeSendAsync(HttpClient client, HttpRequestMessage request)
+    {
+        try
+        {
+            return await client.SendAsync(request);
+        }
+        catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
+        {
+            var msg = $"Cannot reach the RaceDay API at {client.BaseAddress}. Make sure RaceDay.Api is running.";
+            return new HttpResponseMessage(HttpStatusCode.ServiceUnavailable)
+            {
+                Content = new StringContent($"{{\"message\":\"{msg}\"}}", System.Text.Encoding.UTF8, "application/json")
+            };
+        }
     }
 
     public async Task<HttpResponseMessage> SendMultipartAsync(HttpMethod method, string url, MultipartFormDataContent content)
@@ -46,7 +64,7 @@ public class RaceDayApiClient
         using var request = new HttpRequestMessage(method, url);
         AttachToken(request);
         request.Content = content;
-        return await client.SendAsync(request);
+        return await SafeSendAsync(client, request);
     }
 
     public async Task<T?> ReadAsync<T>(HttpResponseMessage response)

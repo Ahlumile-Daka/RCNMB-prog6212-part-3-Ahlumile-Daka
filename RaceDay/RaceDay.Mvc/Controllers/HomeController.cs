@@ -4,11 +4,11 @@ using RaceDay.Mvc.Services;
 
 namespace RaceDay.Mvc.Controllers;
 
-public class EventController : Controller
+public class HomeController : Controller
 {
     private readonly RaceDayApiClient _api;
 
-    public EventController(RaceDayApiClient api)
+    public HomeController(RaceDayApiClient api)
     {
         _api = api;
     }

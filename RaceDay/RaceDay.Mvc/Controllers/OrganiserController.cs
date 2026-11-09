@@ -82,7 +82,9 @@ public class OrganiserController : Controller
         // Optional banner upload
         if (model.BannerFile != null && model.BannerFile.Length > 0)
         {
-            await _api.UploadEventBannerAsync(data.EventID, model.BannerFile);
+            var (bannerOk, _, bannerError) = await _api.UploadEventBannerAsync(data.EventID, model.BannerFile);
+            if (!bannerOk)
+                TempData["Error"] = "Event saved, but the banner upload failed: " + (bannerError ?? "unknown error");
         }
 
         TempData["Success"] = "Event created successfully.";
@@ -139,7 +141,9 @@ public class OrganiserController : Controller
 
         if (model.BannerFile != null && model.BannerFile.Length > 0)
         {
-            await _api.UploadEventBannerAsync(id, model.BannerFile);
+            var (bannerOk, _, bannerError) = await _api.UploadEventBannerAsync(id, model.BannerFile);
+            if (!bannerOk)
+                TempData["Error"] = "Event saved, but the banner upload failed: " + (bannerError ?? "unknown error");
         }
 
         TempData["Success"] = "Event updated successfully.";

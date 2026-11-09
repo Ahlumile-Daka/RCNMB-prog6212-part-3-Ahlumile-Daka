@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0vzYs7Il9Zs=",
+  "dgSpecHash": "HFN+3LzMI9o=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Student\\OneDrive - ADvTECH Ltd\\Documents\\GitHub\\RCNMB-prog6212-part-3-Ahlumile-Daka\\RaceDay\\RaceDay.Api\\RaceDay.Api.csproj",
+  "projectFilePath": "C:\\Users\\Student\\Downloads\\files\\prog6212-part-3-Ahlumile-Daka-fixed\\prog6212-part-3-Ahlumile-Daka\\RaceDay\\RaceDay.Api\\RaceDay.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Student\\.nuget\\packages\\azure.core\\1.44.1\\azure.core.1.44.1.nupkg.sha512",
     "C:\\Users\\Student\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

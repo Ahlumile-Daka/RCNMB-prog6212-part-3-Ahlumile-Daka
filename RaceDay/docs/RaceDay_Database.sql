@@ -1,4 +1,4 @@
--- RaceDay_Schema.sql  (Part 3 - matches RaceDay.Api EF Core model)
+-- RaceDay_Database.sql  (matches the RaceDay.Api EF Core model; used by Parts 1, 2 and 3)
 -- Safe to re-run: every object is created only if missing, and the two
 -- Azure Blob URL columns are added to older databases if they are absent.
 -- Run in SSMS against your SQL Server instance (e.g. .\SQLEXPRESS).

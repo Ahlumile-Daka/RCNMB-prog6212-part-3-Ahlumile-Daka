@@ -21,7 +21,7 @@ builder.Services.AddHttpContextAccessor();
 // In Development, accept the local self-signed HTTPS certificate so API calls work
 builder.Services.AddHttpClient("RaceDayApi", client =>
 {
-    var baseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "https://localhost:7100/";
+    var baseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5100/";
     client.BaseAddress = new Uri(baseUrl);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 })
