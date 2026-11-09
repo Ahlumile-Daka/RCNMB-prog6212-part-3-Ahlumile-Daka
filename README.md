@@ -57,6 +57,10 @@ Login flow: MVC posts to `api/auth/login`, the API returns a JWT, MVC stores it 
 2. Database setup (SQL Server)
 
 
+Run `docs/RaceDay_Database.sql` in SSMS (creates `RaceDayDb`, all tables named exactly as the API's EF Core model expects, including `Events.BannerImageUrl` and `Users.ProfileImageUrl`). It is safe to re-run. Alternatively, point `ConnectionStrings:DefaultConnection` at an empty database and the API creates the tables on first start. Register Organiser/Participant accounts through the app (passwords are BCrypt-hashed by the API).
+
+## 3. Azure Blob Storage setup
+
 
 
 
