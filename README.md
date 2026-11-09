@@ -82,3 +82,27 @@ docker run -d --name raceday-mvc -p 8080:8080 -e ApiSettings__BaseUrl=http://hos
 ```
 
 Open http://localhost:8080. Inside the container `localhost` is the container itself, so the API is reached through `host.docker.internal`. Useful checks: `docker ps`, `docker logs raceday-mvc`.
+
+5. Features implemented
+Authentication & Role Navigation
+- Register / Login / Logout via API
+- JWT stored in MVC session
+- Distinct menus for Organiser vs Participant
+- Protected pages redirect to login
+- Logout clears session
+
+Organiser Interface
+- Dashboard (event count, total enrolments, upcoming)
+- Events CRUD (create / edit / delete)
+- Event banner image upload → Azure Blob
+- Category management per event
+- View enrolments for an event
+- Capture results (finish time + position)
+
+Participant Interface
+- Browse upcoming open events
+- Event details + category list
+- Enrol in an event (select category)
+- My Events (enrolment history + status colour coding)
+- My Results (finish time + position)
+- Profile (update details + profile picture → Azure Blob)
