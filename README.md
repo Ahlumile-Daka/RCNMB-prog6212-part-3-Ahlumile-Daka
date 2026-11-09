@@ -40,3 +40,15 @@ MVC
 Important architecture rule:** The MVC project never talks to the database. All data operations go through the Part 2 API. File uploads also go through the API (/api/events/{id}/banner and /api/users/me/profile-image).
 1b. How the API and MVC connect
 
+
+| Piece | Address |
+|---|---|
+| RaceDay.Api (local, HTTP) | http://localhost:5100 (Swagger at /swagger) |
+| RaceDay.Mvc (local) | http://localhost:5280 |
+| RaceDay.Mvc (Docker) | http://localhost:8080 |
+| MVC -> API setting | ApiSettings:BaseUrl = http://localhost:5100/ (local) or http://host.docker.internal:5100/ (Docker, set with '-e`) |
+
+
+
+
+
