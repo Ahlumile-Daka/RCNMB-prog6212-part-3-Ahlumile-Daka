@@ -91,6 +91,32 @@ Authentication & Role Navigation
 - Protected pages redirect to login
 - Logout clears session
 
+- 
+
+UI
+- Professional RaceDay sporting theme (blue + orange accents)
+- Bootstrap 5 responsive layout
+- Colour-coded status badges (Confirmed / Pending / Open / etc.)
+- Consistent navigation and cards
+
+6. GitHub / CI
+
+Continue pushing to your repository. Aim for 20+ meaningful commits covering:
+- MVC project creation
+- Auth + session
+- Organiser pages
+- Participant pages
+- Blob integration
+- Docker + README
+
+ 7. Video evidence
+
+Record an unlisted YouTube video demonstrating:
+1. Full running application (Organiser + Participant flows)
+2. Code structure explanation
+3. Azure Blob integration (upload banner / profile picture)
+4. Docker build & run
+
 Organiser Interface
 - Dashboard (event count, total enrolments, upcoming)
 - Events CRUD (create / edit / delete)
