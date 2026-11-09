@@ -132,3 +132,5 @@ Participant Interface
 - My Events (enrolment history + status colour coding)
 - My Results (finish time + position)
 - Profile (update details + profile picture → Azure Blob)
+
+https://youtu.be/uk6VxZkgC-o
