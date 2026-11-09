@@ -17,3 +17,7 @@ RaceDay/
 ├── RaceDay.sln
 └── README.md
  Prerequisites
+ - .NET 8 SDK
+- SQL Server / LocalDB (or adjust connection string)
+- Docker Desktop (WSL 2 backend recommended on Windows)
+- Azure Storage account **or** Azurite for local Blob testing
