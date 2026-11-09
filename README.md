@@ -56,11 +56,29 @@ Login flow: MVC posts to `api/auth/login`, the API returns a JWT, MVC stores it 
 
 2. Database setup (SQL Server)
 
-
 Run `docs/RaceDay_Database.sql` in SSMS (creates `RaceDayDb`, all tables named exactly as the API's EF Core model expects, including `Events.BannerImageUrl` and `Users.ProfileImageUrl`). It is safe to re-run. Alternatively, point `ConnectionStrings:DefaultConnection` at an empty database and the API creates the tables on first start. Register Organiser/Participant accounts through the app (passwords are BCrypt-hashed by the API).
 
 3. Azure Blob Storage setup
 It is one of the applications that I have struggled with, whenever I tried creating a storage account, it will not create because of the region. It would not allow me.
 
+4. Docker (MVC container)
 
+Start the API so it is reachable from Docker (listening on all interfaces, plain HTTP):
 
+```bash
+dotnet run --project RaceDay.Api --urls http://0.0.0.0:5100
+```
+
+Build from the **solution root** (`RaceDay/`):
+
+```bash
+docker build -f RaceDay.Mvc/Dockerfile -t raceday-mvc:part3 .
+```
+
+Run:
+
+```bash
+docker run -d --name raceday-mvc -p 8080:8080 -e ApiSettings__BaseUrl=http://host.docker.internal:5100/ raceday-mvc:part3
+```
+
+Open http://localhost:8080. Inside the container `localhost` is the container itself, so the API is reached through `host.docker.internal`. Useful checks: `docker ps`, `docker logs raceday-mvc`.
