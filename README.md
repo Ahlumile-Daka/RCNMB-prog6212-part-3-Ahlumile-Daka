@@ -50,5 +50,13 @@ Important architecture rule:** The MVC project never talks to the database. All 
 
 
 
+Login flow: MVC posts to `api/auth/login`, the API returns a JWT, MVC stores it (plus UserId and Role) in the MVC session and sends it as a `Bearer` token on every later API call. If the API is not running, MVC shows "Cannot reach the RaceDay API" instead of crashing.
+
+**Run both at once:** double-click start-local.bat, or in Visual Studio choose the **RaceDay API + MVC** launch profile (from RaceDay.slnLaunch) / set both projects as Startup Projects.
+
+2. Database setup (SQL Server)
+
+
+
 
 
